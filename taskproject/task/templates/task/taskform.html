@@ -1,0 +1,29 @@
+{% extends "task/base.html" %}
+{% block content %}
+<h2>New post</h2>
+{% if messages %}
+{% for message in messages %}
+    <div  class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+{% endif %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg">
+                <i  class="fa-solid fa-database fa-xl"></i> 
+                Save
+            </button>
+
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'getTask'  %}" class="btn btn-secondary btn-block btn-lg"> <i class="fas fa-stream"></i> Back to Task List</a>
+
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

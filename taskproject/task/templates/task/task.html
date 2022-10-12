@@ -1,0 +1,45 @@
+{% extends "task/base.html" %}
+
+{% block content %}
+<h2>Tasks</h2>
+
+
+<table class="table" style="color: white;">
+    {% if messages %}
+      {% for message in messages %}
+          <div  class="alert alert-success" role="alert">
+              {{ message }}
+          </div>
+      {% endfor %}
+    {% endif %}
+    <thead>
+
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date</th>
+        <th scope="col">
+        <a href="{% url 'getTaskForm'  %}" class="btn btn-outline-success ml-2"> <i class="fa-solid fa-plus"></i> Add New Task</a>
+      </th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>{{task.title|title}}</td>
+                <td>{{task.description|title}}</td>
+                <td>{{task.date|date}}</td>
+                <td>
+                    <a href="{% url 'updateForm' task.id %}" class="btn text-secondary">                   
+                      <i class="fa-solid fa-pen"></i>
+                    </a>
+                    &nbsp;
+                    <a href="{% url 'deleteTask' task.id %}" class="btn text-secondary">                   
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
